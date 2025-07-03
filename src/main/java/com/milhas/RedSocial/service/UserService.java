@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import com.milhas.RedSocial.model.User;
 import com.milhas.RedSocial.repository.IUserRepository;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class UserService {
 
-    IUserRepository myRepository;
+    private final IUserRepository myRepository;
 
     public void createUser(User user) {
         myRepository.save(user);
@@ -27,6 +27,10 @@ public class UserService {
     public User findById(long id) {
 
         return myRepository.findById(id).orElse(null);
+    }
+
+    public void deleteById(long id) {
+        myRepository.deleteById(id);
     }
 
 }

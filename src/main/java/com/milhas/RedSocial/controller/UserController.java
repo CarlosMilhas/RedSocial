@@ -2,6 +2,7 @@ package com.milhas.RedSocial.controller;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,14 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.milhas.RedSocial.model.User;
 import com.milhas.RedSocial.service.UserService;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/user")
 public class UserController {
 
-    UserService myService;
+    private final UserService myService;
 
     @PostMapping()
     public void createUser(@RequestBody User user) {
@@ -37,6 +38,11 @@ public class UserController {
     public User getUser(@PathVariable long id) {
 
         return myService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable long id) {
+        myService.deleteById(id);
     }
 
 }
