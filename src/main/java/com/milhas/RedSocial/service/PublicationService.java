@@ -15,12 +15,18 @@ public class PublicationService {
 
     private final IPublicationRepository myRepository;
 
-    public void createPublication(Publication publication) {
-        myRepository.save(publication);
+    public void createPublication(long publicationId) {
+
+        myRepository.save(myRepository.findById(publicationId).orElse(null));
     }
 
     public List<Publication> getAllPublications() {
         return myRepository.findAll();
+    }
+
+    public Publication getById(long id) {
+        return myRepository.findById(id).orElse(null);
+
     }
 
     public List<Publication> getAllPublicationByUserId(long userId) {

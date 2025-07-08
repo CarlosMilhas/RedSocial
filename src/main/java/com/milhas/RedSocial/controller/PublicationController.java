@@ -22,8 +22,8 @@ public class PublicationController {
     private final PublicationService myService;
 
     @PostMapping()
-    public void createPublication(@RequestBody Publication publication) {
-        myService.createPublication(publication);
+    public void createPublication(@RequestBody long publicationId) {
+        myService.createPublication(publicationId);
     }
 
     @GetMapping()
